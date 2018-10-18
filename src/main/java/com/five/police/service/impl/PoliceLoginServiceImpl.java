@@ -9,12 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PoliceLoginServiceImpl implements PoliceLoginService {
 
-    private final PoliceloginMapper policeloginMapper;
-
     @Autowired
-    public PoliceLoginServiceImpl(PoliceloginMapper policeloginMapper) {
-        this.policeloginMapper = policeloginMapper;
-    }
+    private PoliceloginMapper policeloginMapper;
 
     @Override
     public boolean login(String policeId, String password) {

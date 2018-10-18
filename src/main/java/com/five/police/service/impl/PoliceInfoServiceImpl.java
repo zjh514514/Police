@@ -9,12 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PoliceInfoServiceImpl implements PoliceInfoService {
 
-    private final PoliceinfoMapper policeinfoMapper;
-
     @Autowired
-    public PoliceInfoServiceImpl(PoliceinfoMapper policeinfoMapper) {
-        this.policeinfoMapper = policeinfoMapper;
-    }
+    private PoliceinfoMapper policeinfoMapper;
 
     @Override
     public Policeinfo get(String policeId) {

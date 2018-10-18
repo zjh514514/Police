@@ -1,9 +1,7 @@
 package com.five.police.repository;
 
 import com.five.police.model.Policelogin;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface PoliceloginMapper {
     int deleteByPrimaryKey(String policeid);
 

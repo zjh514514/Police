@@ -1,5 +1,6 @@
 package com.five.police;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
+@MapperScan(value = "com.five.police.repository")
 public class PoliceApplication extends SpringBootServletInitializer {
 
     @Override
