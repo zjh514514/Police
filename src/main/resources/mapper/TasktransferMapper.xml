@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.TasktransferMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Tasktransfer" >
+    <id column="transferid" property="transferid" jdbcType="INTEGER" />
+    <result column="taskid" property="taskid" jdbcType="INTEGER" />
+    <result column="oldleader" property="oldleader" jdbcType="CHAR" />
+    <result column="newleader" property="newleader" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transferid, taskid, oldleader, newleader
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tasktransfer
+    where transferid = #{transferid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tasktransfer
+    where transferid = #{transferid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Tasktransfer" >
+    insert into tasktransfer (transferid, taskid, oldleader, 
+      newleader)
+    values (#{transferid,jdbcType=INTEGER}, #{taskid,jdbcType=INTEGER}, #{oldleader,jdbcType=CHAR}, 
+      #{newleader,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Tasktransfer" >
+    insert into tasktransfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transferid != null" >
+        transferid,
+      </if>
+      <if test="taskid != null" >
+        taskid,
+      </if>
+      <if test="oldleader != null" >
+        oldleader,
+      </if>
+      <if test="newleader != null" >
+        newleader,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transferid != null" >
+        #{transferid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="oldleader != null" >
+        #{oldleader,jdbcType=CHAR},
+      </if>
+      <if test="newleader != null" >
+        #{newleader,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Tasktransfer" >
+    update tasktransfer
+    <set >
+      <if test="taskid != null" >
+        taskid = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="oldleader != null" >
+        oldleader = #{oldleader,jdbcType=CHAR},
+      </if>
+      <if test="newleader != null" >
+        newleader = #{newleader,jdbcType=CHAR},
+      </if>
+    </set>
+    where transferid = #{transferid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Tasktransfer" >
+    update tasktransfer
+    set taskid = #{taskid,jdbcType=INTEGER},
+      oldleader = #{oldleader,jdbcType=CHAR},
+      newleader = #{newleader,jdbcType=CHAR}
+    where transferid = #{transferid,jdbcType=INTEGER}
+  </update>
+</mapper>

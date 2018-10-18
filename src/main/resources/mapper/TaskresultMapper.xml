@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.TaskresultMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Taskresult" >
+    <id column="taskid" property="taskid" jdbcType="INTEGER" />
+    <result column="policeid" property="policeid" jdbcType="CHAR" />
+    <result column="fillintime" property="fillintime" jdbcType="TIMESTAMP" />
+    <result column="isnormal" property="isnormal" jdbcType="CHAR" />
+    <result column="exceptiontype" property="exceptiontype" jdbcType="VARCHAR" />
+    <result column="condition" property="condition" jdbcType="VARCHAR" />
+    <result column="tip" property="tip" jdbcType="VARCHAR" />
+    <result column="process" property="process" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    taskid, policeid, fillintime, isnormal, exceptiontype, condition, tip, process
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from taskresult
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from taskresult
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Taskresult" >
+    insert into taskresult (taskid, policeid, fillintime, 
+      isnormal, exceptiontype, condition, 
+      tip, process)
+    values (#{taskid,jdbcType=INTEGER}, #{policeid,jdbcType=CHAR}, #{fillintime,jdbcType=TIMESTAMP}, 
+      #{isnormal,jdbcType=CHAR}, #{exceptiontype,jdbcType=VARCHAR}, #{condition,jdbcType=VARCHAR}, 
+      #{tip,jdbcType=VARCHAR}, #{process,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Taskresult" >
+    insert into taskresult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        taskid,
+      </if>
+      <if test="policeid != null" >
+        policeid,
+      </if>
+      <if test="fillintime != null" >
+        fillintime,
+      </if>
+      <if test="isnormal != null" >
+        isnormal,
+      </if>
+      <if test="exceptiontype != null" >
+        exceptiontype,
+      </if>
+      <if test="condition != null" >
+        condition,
+      </if>
+      <if test="tip != null" >
+        tip,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="policeid != null" >
+        #{policeid,jdbcType=CHAR},
+      </if>
+      <if test="fillintime != null" >
+        #{fillintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isnormal != null" >
+        #{isnormal,jdbcType=CHAR},
+      </if>
+      <if test="exceptiontype != null" >
+        #{exceptiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Taskresult" >
+    update taskresult
+    <set >
+      <if test="policeid != null" >
+        policeid = #{policeid,jdbcType=CHAR},
+      </if>
+      <if test="fillintime != null" >
+        fillintime = #{fillintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isnormal != null" >
+        isnormal = #{isnormal,jdbcType=CHAR},
+      </if>
+      <if test="exceptiontype != null" >
+        exceptiontype = #{exceptiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        condition = #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        tip = #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Taskresult" >
+    update taskresult
+    set policeid = #{policeid,jdbcType=CHAR},
+      fillintime = #{fillintime,jdbcType=TIMESTAMP},
+      isnormal = #{isnormal,jdbcType=CHAR},
+      exceptiontype = #{exceptiontype,jdbcType=VARCHAR},
+      condition = #{condition,jdbcType=VARCHAR},
+      tip = #{tip,jdbcType=VARCHAR},
+      process = #{process,jdbcType=VARCHAR}
+    where taskid = #{taskid,jdbcType=INTEGER}
+  </update>
+</mapper>

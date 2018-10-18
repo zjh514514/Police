@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.PeopleMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.People" >
+    <id column="idnum" property="idnum" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="focus" property="focus" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idnum, name, sex, age, address, focus, phone, photo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people
+    where idnum = #{idnum,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people
+    where idnum = #{idnum,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.People" >
+    insert into people (idnum, name, sex, age, 
+      address, focus, phone, photo
+      )
+    values (#{idnum,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=TINYINT}, 
+      #{address,jdbcType=VARCHAR}, #{focus,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, #{photo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.People" >
+    insert into people
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idnum != null" >
+        idnum,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="focus != null" >
+        focus,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idnum != null" >
+        #{idnum,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="focus != null" >
+        #{focus,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.People" >
+    update people
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="focus != null" >
+        focus = #{focus,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where idnum = #{idnum,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.People" >
+    update people
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=TINYINT},
+      address = #{address,jdbcType=VARCHAR},
+      focus = #{focus,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      photo = #{photo,jdbcType=VARCHAR}
+    where idnum = #{idnum,jdbcType=CHAR}
+  </update>
+</mapper>

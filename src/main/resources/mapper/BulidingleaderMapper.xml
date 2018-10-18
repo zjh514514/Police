@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.BulidingleaderMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Bulidingleader" >
+    <id column="placeid" property="placeid" jdbcType="INTEGER" />
+    <result column="policeid" property="policeid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    placeid, policeid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bulidingleader
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bulidingleader
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Bulidingleader" >
+    insert into bulidingleader (placeid, policeid)
+    values (#{placeid,jdbcType=INTEGER}, #{policeid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Bulidingleader" >
+    insert into bulidingleader
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="placeid != null" >
+        placeid,
+      </if>
+      <if test="policeid != null" >
+        policeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="placeid != null" >
+        #{placeid,jdbcType=INTEGER},
+      </if>
+      <if test="policeid != null" >
+        #{policeid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Bulidingleader" >
+    update bulidingleader
+    <set >
+      <if test="policeid != null" >
+        policeid = #{policeid,jdbcType=CHAR},
+      </if>
+    </set>
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Bulidingleader" >
+    update bulidingleader
+    set policeid = #{policeid,jdbcType=CHAR}
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.PeopleBulidingMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.PeopleBuliding" >
+    <id column="idnum" property="idnum" jdbcType="CHAR" />
+    <result column="houseid" property="houseid" jdbcType="INTEGER" />
+    <result column="workplaceid" property="workplaceid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    idnum, houseid, workplaceid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from people_buliding
+    where idnum = #{idnum,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from people_buliding
+    where idnum = #{idnum,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.PeopleBuliding" >
+    insert into people_buliding (idnum, houseid, workplaceid
+      )
+    values (#{idnum,jdbcType=CHAR}, #{houseid,jdbcType=INTEGER}, #{workplaceid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.PeopleBuliding" >
+    insert into people_buliding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idnum != null" >
+        idnum,
+      </if>
+      <if test="houseid != null" >
+        houseid,
+      </if>
+      <if test="workplaceid != null" >
+        workplaceid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idnum != null" >
+        #{idnum,jdbcType=CHAR},
+      </if>
+      <if test="houseid != null" >
+        #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="workplaceid != null" >
+        #{workplaceid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.PeopleBuliding" >
+    update people_buliding
+    <set >
+      <if test="houseid != null" >
+        houseid = #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="workplaceid != null" >
+        workplaceid = #{workplaceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where idnum = #{idnum,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.PeopleBuliding" >
+    update people_buliding
+    set houseid = #{houseid,jdbcType=INTEGER},
+      workplaceid = #{workplaceid,jdbcType=INTEGER}
+    where idnum = #{idnum,jdbcType=CHAR}
+  </update>
+</mapper>

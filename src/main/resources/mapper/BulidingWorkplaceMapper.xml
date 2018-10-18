@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.BulidingWorkplaceMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.BulidingWorkplace" >
+    <id column="workplaceid" property="workplaceid" jdbcType="INTEGER" />
+    <result column="workplacename" property="workplacename" jdbcType="VARCHAR" />
+    <result column="ownerid" property="ownerid" jdbcType="CHAR" />
+    <result column="tenantid" property="tenantid" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="fire" property="fire" jdbcType="CHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="placeid" property="placeid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    workplaceid, workplacename, ownerid, tenantid, address, fire, area, placeid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from buliding_workplace
+    where workplaceid = #{workplaceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from buliding_workplace
+    where workplaceid = #{workplaceid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.BulidingWorkplace" >
+    insert into buliding_workplace (workplaceid, workplacename, ownerid, 
+      tenantid, address, fire, 
+      area, placeid)
+    values (#{workplaceid,jdbcType=INTEGER}, #{workplacename,jdbcType=VARCHAR}, #{ownerid,jdbcType=CHAR}, 
+      #{tenantid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{fire,jdbcType=CHAR}, 
+      #{area,jdbcType=INTEGER}, #{placeid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.BulidingWorkplace" >
+    insert into buliding_workplace
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="workplaceid != null" >
+        workplaceid,
+      </if>
+      <if test="workplacename != null" >
+        workplacename,
+      </if>
+      <if test="ownerid != null" >
+        ownerid,
+      </if>
+      <if test="tenantid != null" >
+        tenantid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="fire != null" >
+        fire,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="placeid != null" >
+        placeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="workplaceid != null" >
+        #{workplaceid,jdbcType=INTEGER},
+      </if>
+      <if test="workplacename != null" >
+        #{workplacename,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        #{ownerid,jdbcType=CHAR},
+      </if>
+      <if test="tenantid != null" >
+        #{tenantid,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fire != null" >
+        #{fire,jdbcType=CHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="placeid != null" >
+        #{placeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.BulidingWorkplace" >
+    update buliding_workplace
+    <set >
+      <if test="workplacename != null" >
+        workplacename = #{workplacename,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerid != null" >
+        ownerid = #{ownerid,jdbcType=CHAR},
+      </if>
+      <if test="tenantid != null" >
+        tenantid = #{tenantid,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="fire != null" >
+        fire = #{fire,jdbcType=CHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="placeid != null" >
+        placeid = #{placeid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where workplaceid = #{workplaceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.BulidingWorkplace" >
+    update buliding_workplace
+    set workplacename = #{workplacename,jdbcType=VARCHAR},
+      ownerid = #{ownerid,jdbcType=CHAR},
+      tenantid = #{tenantid,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      fire = #{fire,jdbcType=CHAR},
+      area = #{area,jdbcType=INTEGER},
+      placeid = #{placeid,jdbcType=INTEGER}
+    where workplaceid = #{workplaceid,jdbcType=INTEGER}
+  </update>
+</mapper>

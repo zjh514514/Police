@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.PoliceinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Policeinfo" >
+    <id column="policeid" property="policeid" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idnum" property="idnum" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="workage" property="workage" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="record" property="record" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    policeid, name, idnum, sex, age, workage, phone, address, record, photo, role
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from policeinfo
+    where policeid = #{policeid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from policeinfo
+    where policeid = #{policeid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Policeinfo" >
+    insert into policeinfo (policeid, name, idnum, 
+      sex, age, workage, phone, 
+      address, record, photo, 
+      role)
+    values (#{policeid,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{idnum,jdbcType=CHAR}, 
+      #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{workage,jdbcType=INTEGER}, #{phone,jdbcType=CHAR}, 
+      #{address,jdbcType=VARCHAR}, #{record,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{role,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Policeinfo" >
+    insert into policeinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policeid != null" >
+        policeid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idnum != null" >
+        idnum,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="workage != null" >
+        workage,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="record != null" >
+        record,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policeid != null" >
+        #{policeid,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idnum != null" >
+        #{idnum,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="workage != null" >
+        #{workage,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="record != null" >
+        #{record,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Policeinfo" >
+    update policeinfo
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idnum != null" >
+        idnum = #{idnum,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="workage != null" >
+        workage = #{workage,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="record != null" >
+        record = #{record,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=CHAR},
+      </if>
+    </set>
+    where policeid = #{policeid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Policeinfo" >
+    update policeinfo
+    set name = #{name,jdbcType=VARCHAR},
+      idnum = #{idnum,jdbcType=CHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      workage = #{workage,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      record = #{record,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      role = #{role,jdbcType=CHAR}
+    where policeid = #{policeid,jdbcType=CHAR}
+  </update>
+</mapper>

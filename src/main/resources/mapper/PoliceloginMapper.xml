@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.PoliceloginMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Policelogin" >
+    <id column="policeid" property="policeid" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    policeid, password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from policelogin
+    where policeid = #{policeid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from policelogin
+    where policeid = #{policeid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Policelogin" >
+    insert into policelogin (policeid, password)
+    values (#{policeid,jdbcType=CHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Policelogin" >
+    insert into policelogin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="policeid != null" >
+        policeid,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="policeid != null" >
+        #{policeid,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Policelogin" >
+    update policelogin
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where policeid = #{policeid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Policelogin" >
+    update policelogin
+    set password = #{password,jdbcType=VARCHAR}
+    where policeid = #{policeid,jdbcType=CHAR}
+  </update>
+</mapper>

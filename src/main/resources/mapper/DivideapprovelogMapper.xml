@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.DivideapprovelogMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Divideapprovelog" >
+    <id column="divideid" property="divideid" jdbcType="INTEGER" />
+    <result column="approver" property="approver" jdbcType="CHAR" />
+    <result column="approvetime" property="approvetime" jdbcType="TIMESTAMP" />
+    <result column="approve" property="approve" jdbcType="CHAR" />
+    <result column="opinion" property="opinion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    divideid, approver, approvetime, approve, opinion
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from divideapprovelog
+    where divideid = #{divideid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from divideapprovelog
+    where divideid = #{divideid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Divideapprovelog" >
+    insert into divideapprovelog (divideid, approver, approvetime, 
+      approve, opinion)
+    values (#{divideid,jdbcType=INTEGER}, #{approver,jdbcType=CHAR}, #{approvetime,jdbcType=TIMESTAMP}, 
+      #{approve,jdbcType=CHAR}, #{opinion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Divideapprovelog" >
+    insert into divideapprovelog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="divideid != null" >
+        divideid,
+      </if>
+      <if test="approver != null" >
+        approver,
+      </if>
+      <if test="approvetime != null" >
+        approvetime,
+      </if>
+      <if test="approve != null" >
+        approve,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="divideid != null" >
+        #{divideid,jdbcType=INTEGER},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=CHAR},
+      </if>
+      <if test="approvetime != null" >
+        #{approvetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approve != null" >
+        #{approve,jdbcType=CHAR},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Divideapprovelog" >
+    update divideapprovelog
+    <set >
+      <if test="approver != null" >
+        approver = #{approver,jdbcType=CHAR},
+      </if>
+      <if test="approvetime != null" >
+        approvetime = #{approvetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approve != null" >
+        approve = #{approve,jdbcType=CHAR},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where divideid = #{divideid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Divideapprovelog" >
+    update divideapprovelog
+    set approver = #{approver,jdbcType=CHAR},
+      approvetime = #{approvetime,jdbcType=TIMESTAMP},
+      approve = #{approve,jdbcType=CHAR},
+      opinion = #{opinion,jdbcType=VARCHAR}
+    where divideid = #{divideid,jdbcType=INTEGER}
+  </update>
+</mapper>

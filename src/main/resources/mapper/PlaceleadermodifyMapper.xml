@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.PlaceleadermodifyMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Placeleadermodify" >
+    <id column="bulidingmodifyid" property="bulidingmodifyid" jdbcType="INTEGER" />
+    <result column="placeid" property="placeid" jdbcType="INTEGER" />
+    <result column="oldleader" property="oldleader" jdbcType="CHAR" />
+    <result column="newleader" property="newleader" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bulidingmodifyid, placeid, oldleader, newleader
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from placeleadermodify
+    where bulidingmodifyid = #{bulidingmodifyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from placeleadermodify
+    where bulidingmodifyid = #{bulidingmodifyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Placeleadermodify" >
+    insert into placeleadermodify (bulidingmodifyid, placeid, oldleader, 
+      newleader)
+    values (#{bulidingmodifyid,jdbcType=INTEGER}, #{placeid,jdbcType=INTEGER}, #{oldleader,jdbcType=CHAR}, 
+      #{newleader,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Placeleadermodify" >
+    insert into placeleadermodify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bulidingmodifyid != null" >
+        bulidingmodifyid,
+      </if>
+      <if test="placeid != null" >
+        placeid,
+      </if>
+      <if test="oldleader != null" >
+        oldleader,
+      </if>
+      <if test="newleader != null" >
+        newleader,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bulidingmodifyid != null" >
+        #{bulidingmodifyid,jdbcType=INTEGER},
+      </if>
+      <if test="placeid != null" >
+        #{placeid,jdbcType=INTEGER},
+      </if>
+      <if test="oldleader != null" >
+        #{oldleader,jdbcType=CHAR},
+      </if>
+      <if test="newleader != null" >
+        #{newleader,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Placeleadermodify" >
+    update placeleadermodify
+    <set >
+      <if test="placeid != null" >
+        placeid = #{placeid,jdbcType=INTEGER},
+      </if>
+      <if test="oldleader != null" >
+        oldleader = #{oldleader,jdbcType=CHAR},
+      </if>
+      <if test="newleader != null" >
+        newleader = #{newleader,jdbcType=CHAR},
+      </if>
+    </set>
+    where bulidingmodifyid = #{bulidingmodifyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Placeleadermodify" >
+    update placeleadermodify
+    set placeid = #{placeid,jdbcType=INTEGER},
+      oldleader = #{oldleader,jdbcType=CHAR},
+      newleader = #{newleader,jdbcType=CHAR}
+    where bulidingmodifyid = #{bulidingmodifyid,jdbcType=INTEGER}
+  </update>
+</mapper>

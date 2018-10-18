@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.BulidingMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Buliding" >
+    <id column="placeid" property="placeid" jdbcType="INTEGER" />
+    <result column="placename" property="placename" jdbcType="VARCHAR" />
+    <result column="placetype" property="placetype" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    placeid, placename, placetype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from buliding
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from buliding
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Buliding" >
+    insert into buliding (placeid, placename, placetype
+      )
+    values (#{placeid,jdbcType=INTEGER}, #{placename,jdbcType=VARCHAR}, #{placetype,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Buliding" >
+    insert into buliding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="placeid != null" >
+        placeid,
+      </if>
+      <if test="placename != null" >
+        placename,
+      </if>
+      <if test="placetype != null" >
+        placetype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="placeid != null" >
+        #{placeid,jdbcType=INTEGER},
+      </if>
+      <if test="placename != null" >
+        #{placename,jdbcType=VARCHAR},
+      </if>
+      <if test="placetype != null" >
+        #{placetype,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Buliding" >
+    update buliding
+    <set >
+      <if test="placename != null" >
+        placename = #{placename,jdbcType=VARCHAR},
+      </if>
+      <if test="placetype != null" >
+        placetype = #{placetype,jdbcType=CHAR},
+      </if>
+    </set>
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Buliding" >
+    update buliding
+    set placename = #{placename,jdbcType=VARCHAR},
+      placetype = #{placetype,jdbcType=CHAR}
+    where placeid = #{placeid,jdbcType=INTEGER}
+  </update>
+</mapper>
