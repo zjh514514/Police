@@ -21,15 +21,13 @@ public class PoliceController {
 
     @Autowired
     private PoliceLoginService policeLoginService;
-    @Autowired
-    private PoliceInfoService policeInfoService;
 
     @ApiOperation(value = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseUtil login(@ApiParam(value = "用户名和密码") @RequestBody Policelogin policelogin, HttpSession session) {
-        if (policeLoginService.login(policelogin.getPoliceid(), policelogin.getPassword())) {
-            Policeinfo policeinfo = policeInfoService.get(policelogin.getPoliceid());
+        Policeinfo policeinfo = policeLoginService.login(policelogin.getPoliceid(), policelogin.getPassword());
+        if (policeinfo != null) {
             session.setAttribute("police", policeinfo);
             Map<String, Object> map = new HashMap<>();
             map.put("police", policeinfo);
