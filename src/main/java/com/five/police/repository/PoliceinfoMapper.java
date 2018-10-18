@@ -1,9 +1,9 @@
 package com.five.police.repository;
 
 import com.five.police.model.Policeinfo;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
+@Mapper
 public interface PoliceinfoMapper {
     int deleteByPrimaryKey(String policeid);
 
