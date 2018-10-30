@@ -2,6 +2,8 @@ package com.five.police.repository;
 
 import com.five.police.model.Policeinfo;
 
+import java.util.List;
+
 public interface PoliceinfoMapper {
     int deleteByPrimaryKey(String policeid);
 
@@ -14,4 +16,6 @@ public interface PoliceinfoMapper {
     int updateByPrimaryKeySelective(Policeinfo record);
 
     int updateByPrimaryKey(Policeinfo record);
+
+    List<Policeinfo> selectallpolice(Policeinfo record);
 }

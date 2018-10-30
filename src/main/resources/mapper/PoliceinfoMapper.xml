@@ -17,6 +17,39 @@
   <sql id="Base_Column_List" >
     policeid, name, idnum, sex, age, workage, phone, address, record, photo, role
   </sql>
+
+  <resultMap id="ClassResultMap" type="com.five.police.model.Policeinfo" >
+    <id column="policeid" property="policeid" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idnum" property="idnum" jdbcType="CHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="workage" property="workage" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="record" property="record" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="CHAR" />
+    <association property="ddsex" javaType="com.five.police.model.Dd">
+      <id property="code" column="dd_sex.code"/>
+      <result property="value" column="dd_sex.value"/>
+    </association>
+    <association property="ddrole" javaType="com.five.police.model.Dd">
+      <id property="code" column="dd_role.code"/>
+      <result property="value" column="dd_role.value"/>
+    </association>
+  </resultMap>
+
+  <select id="selectallpolice" resultMap="ClassResultMap" parameterType="java.lang.String" >
+    select p.policeid, p.name, p.idnum,
+      p.sex, p.age, p.workage, p.phone,
+      p.address, p.record, p.photo,
+      p.role,dd_sex.code "dd_sex.code",dd_sex.value "dd_sex.value",
+      dd_role.code "dd_role.code",dd_role.value "dd_role.value"
+    from (select * from DD) AS dd_sex
+    RIGHT JOIN policeinfo p ON dd_sex.code = p.sex
+    LEFT JOIN DD dd_role ON dd_role.code = p.role
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

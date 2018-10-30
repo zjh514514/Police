@@ -107,9 +107,10 @@
                     {field:'policeid', width:100, sort: true, title: '警号'}
                     ,{field:'name', width:80, title: '姓名'}
                     ,{field:'idnum', width:200, title: '身份证'}
-                    ,{field:'sex', width: 75, sort: true, title: '性别'}
+                    ,{field:'ddsex', width: 75, sort: true, title: '性别',templet: '<div>{{d.ddsex.value}}</div>'}
                     ,{field:'age', width: 75, sort: true, align: 'left', title: '年龄'}
                     ,{field:'workage', width: 75, sort: true, align: 'left', title: '工龄'}
+                    ,{field:'ddrole', width: 75, sort: true, align: 'left', title: '角色',templet: '<div>{{d.ddrole.value}}</div>'}
                     ,{field:'phone', width: 125, align: 'left', title: '手机号'}
                     ,{field:'address', width: 300, align: 'left', title: '地址'}
                     ,{field:'record', minWidth: 100, align: 'left', title: '履历'}

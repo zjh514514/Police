@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,12 +23,15 @@ public class PoliceController {
     @Autowired
     private PoliceLoginService policeLoginService;
 
+    @Autowired
+    private PoliceInfoService policeInfoService;
+
     @ApiOperation(value = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseUtil login(@ApiParam(value = "用户名和密码") @RequestBody Policelogin policelogin, HttpSession session) {
         Policeinfo policeinfo = policeLoginService.login(policelogin.getPoliceid(), policelogin.getPassword());
-        if (policeinfo != null) {
+        if (policeinfo.getPoliceid() != null) {
             session.setAttribute("police", policeinfo);
             Map<String, Object> map = new HashMap<>();
             map.put("police", policeinfo);
@@ -35,5 +39,17 @@ public class PoliceController {
         } else {
             return ResponseUtil.error("用户名或密码错误");
         }
+    }
+
+    @ApiOperation(value = " 用户查询")
+    @RequestMapping(value = "/userquery", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseUtil userquery() {
+        Policeinfo policeinfo = new Policeinfo();
+//        policeinfo.setPoliceid(policeid);
+        List<Policeinfo> policeinfoList = policeInfoService.policequery(policeinfo);
+        Map<String, Object> map = new HashMap<>();
+        map.put("police", policeinfoList);
+        return ResponseUtil.success(map);
     }
 }

@@ -23,6 +23,26 @@ public class Policeinfo {
 
     private String role;
 
+    private Dd ddsex;
+
+    private Dd ddrole;
+
+    public Dd getDdsex() {
+        return ddsex;
+    }
+
+    public Dd getDdrole() {
+        return ddrole;
+    }
+
+    public void setDdsex(Dd ddsex) {
+        this.ddsex = ddsex;
+    }
+
+    public void setDdrole(Dd ddrole) {
+        this.ddrole = ddrole;
+    }
+
     public String getPoliceid() {
         return policeid;
     }

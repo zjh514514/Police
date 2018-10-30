@@ -6,6 +6,8 @@ import com.five.police.service.PoliceInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PoliceInfoServiceImpl implements PoliceInfoService {
 
@@ -15,5 +17,10 @@ public class PoliceInfoServiceImpl implements PoliceInfoService {
     @Override
     public Policeinfo get(String policeId) {
         return policeinfoMapper.selectByPrimaryKey(policeId);
+    }
+
+    @Override
+    public List<Policeinfo> policequery(Policeinfo policeinfo) {
+        return policeinfoMapper.selectallpolice(policeinfo);
     }
 }
