@@ -11,22 +11,20 @@
         <div class="layui-logo"><font size="5">**系统</font></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="index">照片墙</a></li>
-            <li class="layui-nav-item"><a href="index_video">视频</a></li>
+            <li class="layui-nav-item"><a href="index">1</a></li>
+            <li class="layui-nav-item"><a href="index_video">2</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="img/1.png" class="layui-nav-img">
-                    姓名
-                    角色
+                    <img src="" class="layui-nav-img" id="photo"><b id="user"></b>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="userinfo">基本资料</a></dd>
+                    <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="tologin">退出</a></li>
+            <li class="layui-nav-item"><a href="javascript:void(0)" id="click">退出</a></li>
         </ul>
     </div>
 
@@ -34,7 +32,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree">
-                <li class="layui-nav-item "><a class="layui-this" href="index">首页</a></li>
+                <li class="layui-nav-item "><a class="layui-this" href="">首页</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         个人
@@ -46,17 +44,17 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:">班级</a>
+                    <a href="javascript:">1</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="tomember">成员列表</a></dd>
+                        <dd><a href="tomember">11</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">班级事务</a>
+                    <a href="javascript:;">2</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="toholiday">法定节假日离校登记</a></dd>
-                        <dd><a href="tovacation">寒暑假离校情况</a></dd>
-                        <dd><a href="tofuture">实习考研情况</a></dd>
+                        <dd><a href="toholiday">21</a></dd>
+                        <dd><a href="tovacation">22</a></dd>
+                        <dd><a href="tofuture">23</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -64,13 +62,13 @@
     </div>
     <div class="layui-body">
         <div style="padding: 15px;">
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 15px;">
-                <legend>基本信息</legend>
-            </fieldset>
+            <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 15px;">-->
+                <!--<legend>基本信息</legend>-->
+            <!--</fieldset>-->
             <div class="demoTable">
-                搜索学号：
+                搜索警员：
                 <div class="layui-inline">
-                    <input name="username" class="layui-input" id="demoReload" autocomplete="off" placeholder="请输完整学号">
+                    <input name="username" class="layui-input" id="demoReload" autocomplete="off" placeholder="请输完整警号">
                 </div>
                 <button class="layui-btn" data-type="reload">搜索</button>
             </div>
@@ -87,7 +85,16 @@
 <script type="text/javascript" src="javascript/jquery.min.js"></script>
 <script type="text/javascript" src="layui/layui.js"></script>
 <script type="text/javascript" src="javascript/index.js"></script>
+<script src="js/cookie.js"></script>
 <script>
+    // document.getElementById("user").innerHTML = getCookie("name");
+    $("#user").html(getCookie("name"));
+    $("#photo").attr("src",getCookie("photo"));
+    loginCookie();
+    $("#click").click(function (){
+        setCookie("login","0");
+        window.location.href="login.html";
+    });
     layui.use(['element','table'], function(){
         var element = layui.element;
         var table = layui.table;
@@ -165,5 +172,6 @@
             active[type] ? active[type].call(this) : '';
         });
     });
+
 </script>
 </html>

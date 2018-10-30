@@ -29,12 +29,13 @@ public class PoliceController {
     @ApiOperation(value = "用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseUtil login(@ApiParam(value = "用户名和密码") @RequestBody Policelogin policelogin, HttpSession session) {
-        Policeinfo policeinfo = policeLoginService.login(policelogin.getPoliceid(), policelogin.getPassword());
+    public ResponseUtil login(@ApiParam(value = "用户名和密码") @RequestParam String policeid,@RequestParam String password, HttpSession session) {
+        Policeinfo policeinfo = policeLoginService.login(policeid, password);
         if (policeinfo.getPoliceid() != null) {
             session.setAttribute("police", policeinfo);
             Map<String, Object> map = new HashMap<>();
             map.put("police", policeinfo);
+            map.put("login",1);
             return ResponseUtil.success(map);
         } else {
             return ResponseUtil.error("用户名或密码错误");

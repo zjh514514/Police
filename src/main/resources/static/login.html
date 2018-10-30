@@ -44,6 +44,7 @@
 <script src="js/rAF.js"></script>
 <script src="js/demo-1.js"></script>
 <script src="js/vue.min.js"></script>
+<script src="js/cookie.js"></script>
 <script>
 
     var a = $("#username").val();
@@ -73,7 +74,11 @@
                 success:function(data){
                     if(data.status===200){
                         alert("登录成功");
-                        alert(data.police.policeid);
+                        setCookie("name",data.police.name);
+                        setCookie("login",data.login);
+                        setCookie("photo",data.police.photo);
+                        // alert(getCookie("name"));
+                        window.location.href='usertable.html';
                     }else
                     {
                         alert(data.msg);
