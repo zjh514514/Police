@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.police.repository.DdMapper" >
+  <resultMap id="BaseResultMap" type="com.five.police.model.Dd" >
+    <id column="code" property="code" jdbcType="CHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code, value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from DD
+    where code = #{code,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from DD
+    where code = #{code,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.five.police.model.Dd" >
+    insert into DD (code, value)
+    values (#{code,jdbcType=CHAR}, #{value,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.police.model.Dd" >
+    insert into DD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="code != null" >
+        #{code,jdbcType=CHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.police.model.Dd" >
+    update DD
+    <set >
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code = #{code,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.police.model.Dd" >
+    update DD
+    set value = #{value,jdbcType=VARCHAR}
+    where code = #{code,jdbcType=CHAR}
+  </update>
+</mapper>
