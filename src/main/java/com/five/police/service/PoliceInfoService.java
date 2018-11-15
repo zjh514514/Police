@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PoliceInfoService {
 
-    Policeinfo get(String policeId);
+    List getPolice(String policeId);
 
     List<Policeinfo> policequery(Policeinfo policeinfo);
 }

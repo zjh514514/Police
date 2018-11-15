@@ -18,4 +18,6 @@ public interface PoliceinfoMapper {
     int updateByPrimaryKey(Policeinfo record);
 
     List<Policeinfo> selectallpolice(Policeinfo record);
+
+    List selectByPolice(String policeid);
 }

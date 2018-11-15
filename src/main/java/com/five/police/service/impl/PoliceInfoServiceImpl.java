@@ -15,8 +15,8 @@ public class PoliceInfoServiceImpl implements PoliceInfoService {
     private PoliceinfoMapper policeinfoMapper;
 
     @Override
-    public Policeinfo get(String policeId) {
-        return policeinfoMapper.selectByPrimaryKey(policeId);
+    public List getPolice(String policeId) {
+        return policeinfoMapper.selectByPolice(policeId);
     }
 
     @Override

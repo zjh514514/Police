@@ -48,6 +48,7 @@
     from (select * from DD) AS dd_sex
     RIGHT JOIN policeinfo p ON dd_sex.code = p.sex
     LEFT JOIN DD dd_role ON dd_role.code = p.role
+    where policeid like "%"#{policeid,jdbcType=CHAR}"%"
   </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -193,4 +194,10 @@
       role = #{role,jdbcType=CHAR}
     where policeid = #{policeid,jdbcType=CHAR}
   </update>
+  <select id="selectByPolice" resultMap="ClassResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from policeinfo
+    where policeid like "%"#{policeid,jdbcType=CHAR}"%"
+  </select>
 </mapper>
